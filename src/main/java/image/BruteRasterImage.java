@@ -1,6 +1,7 @@
 package image;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public class BruteRasterImage implements Image {
     private Color[][] colors;
@@ -11,7 +12,7 @@ public class BruteRasterImage implements Image {
     public BruteRasterImage(Color color, int width, int height) {
         this.width = width;
         this.height = height;
-        this.colors[this.width][this.height] = color;
+        this.colors[width][height] = color;
     }
 
     public BruteRasterImage(Color[][] colors) {
@@ -23,7 +24,7 @@ public class BruteRasterImage implements Image {
 
     //alloue la matrice représentant l’image.
     public void createRepresentation() {
-        colors = new colors(getWidth(), getHeight());
+        colors = new Color[getWidth()][getHeight()];
     }
 
     //fixe la couleur d’un pixel.
@@ -38,9 +39,9 @@ public class BruteRasterImage implements Image {
 
     //met à jour les valeurs de couleurs de l’image en utilisant les valeurs de la matrice donnée en paramètre.
     private void setPixelsColor(Color[][] pixels) {
-        for (int i = 1; i < this.width; i++) {
-            for (int j = 1; j < this.height; j++) {
-                colors[this.width][this.height] = pixels; //erreur revoir
+        for (int i = 0; i < getWidth(); i++) {
+            for (int j = 0; j < getHeight(); j++) {
+                colors[i][j] = pixels[i][j]; //erreur revoir
             }
         }
     }
