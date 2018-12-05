@@ -1,43 +1,64 @@
 package image;
 
 import javafx.scene.paint.Color;
+import java.util.List;
 
-public class PaletteRasterImage implements Image{
-    private Color[][] pixels;
+public class PaletteRasterImage implements Image {
+    List<Color> palette;
     private int width;
     private int height;
+    private int[][] indexOfColors;
 
-    public PaletteRasterImage(Color color, int width, int height){
+    public PaletteRasterImage(Color color, int width, int height) {
         this.width = width;
         this.height = height;
-        pixels = new Color[width][height];
-        for(int i=0;i<width;i++)
-            for(int j=0; j<height;j++)
-                pixels[i][j]= color;
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                this.setPixelColor(color, i, j);
     }
 
-    public PaletteRasterImage(Color[][] pixels){
-        this.pixels = pixels;
+    public PaletteRasterImage(Color[][] pixels) {
         this.width = pixels.length;
         this.height = pixels[0].length;
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                this.setPixelColor(pixels[i][j], i, j);
     }
 
-    public void createRepresentation(){}
+    public void createRepresentation() {
+        indexOfColors = new int[width][height];
+    }
 
-    public void setPixelColor(Color color, int x, int y){}
+    public void setPixelColor(Color color, int x, int y) {
+        if (!palette.contains(color))
+            palette.add(color);
+        indexOfColors[x][y] = palette.indexOf(color);
+    }
 
-    public Color getPixelColor(int x, int y){}
+    public Color getPixelColor(int x, int y) {
+        return ;
+    }
 
-    public void setPixelsColor(Color[][] pixels){}
+    public void setPixelsColor(Color[][] pixels) {
+    }
 
-    private void setPixelsColor(Color color){}
+    private void setPixelsColor(Color color) {
+        indexOfColors = color[][];
+    }
 
-    public int getWidth(){}
+    public int getWidth() {
+        return this.width;
+    }
 
-    public int getHeight(){}
+    public int getHeight() {
+        return this.height;
+    }
 
-    protected void setWidth(int width){}
+    protected void setWidth(int width) {
+        this.width = width;
+    }
 
-    protected void setHeight(int height){}
-
+    protected void setHeight(int height) {
+        this.height = height;
+    }
 }
