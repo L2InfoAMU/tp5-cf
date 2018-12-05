@@ -18,10 +18,10 @@ public class BruteRasterImage implements Image {
                 pixels[i][j]= color;
         }
 
-    public BruteRasterImage(Color[][] colors) {
-        this.pixels = colors;
-        this.width = colors.length;
-        this.height = colors[0].length;
+    public BruteRasterImage(Color[][] pixels) {
+        this.pixels = pixels;
+        this.width = pixels.length;
+        this.height = pixels[0].length;
 
     }
 

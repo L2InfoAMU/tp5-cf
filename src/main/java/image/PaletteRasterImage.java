@@ -8,10 +8,19 @@ public class PaletteRasterImage implements Image{
     private int height;
 
     public PaletteRasterImage(Color color, int width, int height){
-
+        this.width = width;
+        this.height = height;
+        pixels = new Color[width][height];
+        for(int i=0;i<width;i++)
+            for(int j=0; j<height;j++)
+                pixels[i][j]= color;
     }
 
-    public PaletteRasterImage(Color[][] pixels){}
+    public PaletteRasterImage(Color[][] pixels){
+        this.pixels = pixels;
+        this.width = pixels.length;
+        this.height = pixels[0].length;
+    }
 
     public void createRepresentation(){}
 
