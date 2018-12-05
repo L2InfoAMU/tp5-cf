@@ -36,14 +36,16 @@ public class PaletteRasterImage implements Image {
     }
 
     public Color getPixelColor(int x, int y) {
-        return ;
+        /* probleme de type a corriger*/
+        return indexOfColors[x][y];
     }
 
     public void setPixelsColor(Color[][] pixels) {
+        indexOfColors[][] = pixels;
     }
 
     private void setPixelsColor(Color color) {
-        indexOfColors = color[][];
+         indexOfColors=color;
     }
 
     public int getWidth() {
