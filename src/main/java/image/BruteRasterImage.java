@@ -4,7 +4,7 @@ package image;
 import javafx.scene.paint.Color;
 
 public class BruteRasterImage implements Image {
-    private Color[][] colors;
+    private Color[][] pixels;
     private int width;
     private int height;
 
@@ -12,11 +12,14 @@ public class BruteRasterImage implements Image {
     public BruteRasterImage(Color color, int width, int height) {
         this.width = width;
         this.height = height;
-        this.colors[width][height] = color;
-    }
+        pixels = new Color[width][height];
+        for(int i=0;i<width;i++)
+            for(int j=0; j<height;j++)
+                pixels[i][j]= color;
+        }
 
     public BruteRasterImage(Color[][] colors) {
-        this.colors = colors;
+        this.pixels = colors;
         this.width = colors.length;
         this.height = colors[0].length;
 
@@ -24,31 +27,31 @@ public class BruteRasterImage implements Image {
 
     //alloue la matrice représentant l’image.
     public void createRepresentation() {
-        colors = new Color[getWidth()][getHeight()];
+        pixels = new Color[getWidth()][getHeight()];
     }
 
     //fixe la couleur d’un pixel.
     public void setPixelColor(Color color, int x, int y) {
-        this.colors[x][y] = color;
+        this.pixels[x][y] = color;
     }
 
     //retourne la couleur d’un pixel.
     public Color getPixelColor(int x, int y) {
-        return colors[x][y];
+        return pixels[x][y];
     }
 
     //met à jour les valeurs de couleurs de l’image en utilisant les valeurs de la matrice donnée en paramètre.
     private void setPixelsColor(Color[][] pixels) {
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
-                colors[i][j] = pixels[i][j]; //erreur revoir
+                pixels[i][j] = pixels[i][j]; //erreur revoir
             }
         }
     }
 
     //change les valeurs de tous les pixels pour qu’ils soient tous de la couleur donnée en paramètre.
     private void setPixelsColor(Color color) {
-        this.colors[this.width][this.height] = color;
+        this.pixels[this.width][this.height] = color;
     }
 
     // retourne la largeur de l’image.
