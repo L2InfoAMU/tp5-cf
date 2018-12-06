@@ -14,11 +14,12 @@ public class PaletteRasterImage implements Image {
     public PaletteRasterImage(Color color, int width, int height) {
         this.width = width;
         this.height = height;
-        for (int i = 0; i < width; i++)
-            for (int j = 0; j < height; j++)
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 this.setPixelColor(color, i, j);
+            }
+        }
     }
-
     public PaletteRasterImage(Color[][] pixels) {
         this.width = pixels.length;
         this.height = pixels[0].length;
@@ -39,16 +40,25 @@ public class PaletteRasterImage implements Image {
     }
 
     public Color getPixelColor(int x, int y) {
-        /* probleme de type a corriger*/
         return palette.get(indexOfColors[x][y]);
     }
 
     public void setPixelsColor(Color[][] pixels) {
-        indexOfColors[][] = pixels;
+        if(pixels.length!=width || pixels[0].length!=height)
+            throw new ArithmeticException("La taille des tableaux ne correpondent pas");
+        for(int i=0 ; i < width ; i++) {
+            for (int j = 0; j < height; j++) {
+                this.setPixelColor( pixels[i][j],i,j);
+            }
+        }
     }
 
     private void setPixelsColor(Color color) {
-         indexOfColors=color;
+        for(int i=0 ; i < width ; i++) {
+            for (int j = 0; j < height; j++) {
+                this.setPixelColor( color,i,j);
+            }
+        }
     }
 
     public int getWidth() {
