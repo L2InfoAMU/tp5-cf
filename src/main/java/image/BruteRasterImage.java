@@ -3,26 +3,26 @@ package image;
 
 import javafx.scene.paint.Color;
 
-public class BruteRasterImage implements Image {
+public class BruteRasterImage extends RasterImage implements Image  {
     private Color[][] pixels;
-    private int width;
-    private int height;
 
 
     public BruteRasterImage(Color color, int width, int height) {
-        this.width = width;
-        this.height = height;
+        super(width, height);
         pixels = new Color[width][height];
-        for(int i=0;i<width;i++)
-            for(int j=0; j<height;j++)
-                pixels[i][j]= color;
+        for (int i = 0; i < getWidth(); i++) {
+            for (int j = 0; j < getHeight(); j++) {
+                pixels[i][j] = color;
+            }
         }
+    }
 
     public BruteRasterImage(Color[][] pixels) {
+        super(pixels.length,pixels[0].length);
         this.pixels = pixels;
-        this.width = pixels.length;
-        this.height = pixels[0].length;
-
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                this.pixels[i][j]=pixels[i][j];
     }
 
     //alloue la matrice représentant l’image.
