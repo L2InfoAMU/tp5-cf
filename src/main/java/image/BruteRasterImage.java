@@ -54,23 +54,4 @@ public class BruteRasterImage extends RasterImage implements Image  {
         this.pixels[this.width][this.height] = color;
     }
 
-    // retourne la largeur de l’image.
-    public int getWidth() {
-        return this.width;
-    }
-
-    // retourne la hauteur de l’image.
-    public int getHeight() {
-        return this.height;
-    }
-
-    // fixe la largeur de l’image.
-    protected void setWidth(int width) {
-        this.width = width;
-    }
-
-    //fixe la hauteur de l’image.
-    protected void setHeight(int height) {
-        this.height = height;
-    }
 }
