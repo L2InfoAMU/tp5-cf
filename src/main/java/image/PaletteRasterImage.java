@@ -1,6 +1,8 @@
 package image;
 
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaletteRasterImage implements Image {
@@ -26,6 +28,7 @@ public class PaletteRasterImage implements Image {
     }
 
     public void createRepresentation() {
+        palette = new ArrayList<Color>() ;
         indexOfColors = new int[width][height];
     }
 
@@ -37,7 +40,7 @@ public class PaletteRasterImage implements Image {
 
     public Color getPixelColor(int x, int y) {
         /* probleme de type a corriger*/
-        return indexOfColors[x][y];
+        return palette.get(indexOfColors[x][y]);
     }
 
     public void setPixelsColor(Color[][] pixels) {
