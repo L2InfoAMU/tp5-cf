@@ -1,6 +1,6 @@
 package image;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class SparseRasterImage extends RasterImage implements Image{
         this.createRepresentation();
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
-                if (color!=Color.WHITE) {
+                if (color!=Color.WHITE&&pixelsMap.containsKey(pixels[i][j] )!=true) {
                     pixelsMap.put(pixels[i][j], color);
                 }
             }
@@ -27,7 +27,9 @@ public class SparseRasterImage extends RasterImage implements Image{
         this.createRepresentation();
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
+                if (pixelsMap.containsKey(pixels[i][j] )!=true){
                     pixelsMap.put(this.pixels[i][j], pixels[i][j]);
+                }
             }
         }
     }
@@ -36,16 +38,23 @@ public class SparseRasterImage extends RasterImage implements Image{
 
     public void createRepresentation() {
         pixels = new Point[getWidth()][getHeight()];
-        pixelsMap= new HashMap<Point, Color>();
+        pixelsMap= new HashMap<>();
+        setPixelsColor(Color.WHITE);
         }
 
 
     public void setPixelColor(Color color, int x, int y) {
+        if (pixelsMap.containsKey( pixels[x][y] )!=true)
+            throw new ArithmeticException("Nik");
+        else
         pixelsMap.put(pixels[x][y], color);
         }
 
 
     public Color getPixelColor(int x, int y) {
+        if (pixelsMap.containsKey( pixels[x][y] )!=true)
+            throw new ArithmeticException("Nik");
+        else
         return pixelsMap.get(pixels[x][y]);
         }
 
@@ -56,7 +65,9 @@ public class SparseRasterImage extends RasterImage implements Image{
         else{
             for (int i = 0; i < getWidth(); i++) {
                 for (int j = 0; j < getHeight(); j++) {
-                    setPixelColor(pixels[i][j], i, j);
+                    if (pixels[i][j] != Color.WHITE) {
+                        setPixelColor(pixels[i][j], i, j);
+                    }
                 }
             }
         }
