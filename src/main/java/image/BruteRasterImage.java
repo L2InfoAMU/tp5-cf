@@ -44,7 +44,7 @@ public class BruteRasterImage extends RasterImage implements Image  {
     private void setPixelsColor(Color[][] pixels) {
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
-                pixels[i][j] = pixels[i][j]; //erreur revoir
+                pixels[i][j] = pixels[i][j];
             }
         }
     }
