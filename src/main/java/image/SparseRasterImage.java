@@ -15,6 +15,7 @@ public class SparseRasterImage extends RasterImage implements Image{
         this.createRepresentation();
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
+                pixels[i][j]= new Point(i,j);
                 if (color!=Color.WHITE&&pixelsMap.containsKey(pixels[i][j] )!=true) {
                     pixelsMap.put(pixels[i][j], color);
                 }
@@ -27,6 +28,7 @@ public class SparseRasterImage extends RasterImage implements Image{
         this.createRepresentation();
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
+                this.pixels[i][j]= new Point(i,j);
                 if (pixelsMap.containsKey(pixels[i][j] )!=true){
                     pixelsMap.put(this.pixels[i][j], pixels[i][j]);
                 }
